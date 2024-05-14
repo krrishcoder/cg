@@ -1,0 +1,2377 @@
+// all codes 
+5/14/24, 8:39 PM
+Teams and Channels | General | Microsoft Teams
+q1
+Monday, April 18, 2022 12:29 PM
+1) Write a program to implement Bresenhams line drawing algorithm
+
+
+
+#include <iostream> #include <conio.h> #include <math.h>
+#include <graphics.h> using namespace std;
+void swap(int *&p1 , int *&p2){ int *temp = p2;
+p2 = p1;
+p1 = temp;
+}
+double slope(int *p1, int *p2,int &flag){ if(p2[1] - p1[1] ==0){
+ flag =0;
+return 0;
+}
+if(p2[0] - p1[0]==0){ flag =1;
+return 0; }
+// 0 means
+double m = double(double(p2[1] - p1[1] ) / double(p2[0] - p1[0]));
+return m; }
+void draw_h(int *p1, int *p2){ int x1 = p1[0];
+int x2 = p2[0];
+int y= p1[1];
+if (p2[0]<p1[0])
+{ swap(p1,p2);
+}
+while(x1 < x2){ putpixel(x1,getmaxy()-y,255); x1 +=1;
+} }
+void draw_v(int *p1, int *p2){ int y1 = p1[1];
+int y2 = p2[1];
+int x= p1[0];
+if (p2[1]<p1[1])
+{ swap(p1,p2);
+}
+while(y1 < y2){ putpixel(x,getmaxy()-y1,255); y1 +=1;
+}
+https://teams.microsoft.com/v2/
+1/5
+
+5/14/24, 8:39 PM
+}
+void mid_point(int *p1, int *p2){ int flag =-1;
+double m = slope(p1,p2,flag);
+if(m>1){
+double m = slope(p1,p2,flag);
+int dy = p2[1] - p1[1]; int dx = p2[0] - p1[0];
+inta=dy;// y=dy/dxx +c ,,ax+by+c= 0 , F(x,y) =dyx -dxy +Bdx=0
+Teams and Channels | General | Microsoft Teams
+int b = -dx;
+cout<<"called steepe positive"<<endl;
+int d = -(2*b+a); // d is decsion parameter 180
+int S = -2*b; // -20
+int SE = -2*(a + b); // 2(180)
+putpixel(p1[0],getmaxy()-p1[1] , 255) ;
+int x = p1[0]; int y = p1[1];
+while(y < p2[1]){
+// 200 - 20 - ->
+if(d < 0){
+d=d+S; //ifdisnegativethanchooseE, cout<<"negative"<<endl;
+}else{
+d= d+SE;
+x +=1; cout<<"positive"<<endl;
+}
+y +=1; putpixel(x,getmaxy()-y,255);
+} }
+else if(m>0 && m<=1){
+int dy = p2[1] - p1[1]; int dx = p2[0] - p1[0];
+// steepe positive
+https://teams.microsoft.com/v2/
+2/5
+
+5/14/24, 8:39 PM
+inta=dy;// y=dy/dxx +c ,,ax+by+c= 0 , F(x,y) =dyx -dxy +Bdx=0
+int b = -dx;
+int d = 2*a + b; // d is decsion parameter int E = 2*a;
+int NE = 2*a + 2*b;
+putpixel(p1[0],p1[1] , 255) ;
+int x = p1[0]; int y = p1[1];
+while(x < p2[0]){
+if(d <=0){
+d=d+E; //ifdisnegativethanchooseE,
+}else{
+d = d+NE; y +=1;
+}
+x +=1; putpixel(x,getmaxy()-y,255);
+}
+}else if(m < -1){ // steepe negative
+int dy = p2[1] - p1[1]; int dx = p2[0] - p1[0];
+inta=dy;// y=dy/dxx +c ,,ax+by+c= 0 , F(x,y) =dyx -dxy +Bdx=0
+int b = -dx;
+int d = (a - 2*b); // d is decsion parameter int S = -2*b;
+int SE = 2*(a -b);
+putpixel(p2[0],getmaxy()- p2[1] , 255) ; int x = p2[0];
+int y = p2[1];
+while(y< p1[1]){ //0>100,1>100,2>100 ,,, 90,89,88
+if(d <=0){
+d=d+S; //ifdisnegativethanchooseE,
+}else{
+d= d+SE; x -=1;
+}
+y += 1; putpixel(x,getmaxy()-y,255);
+}
+Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+3/5
+
+5/14/24, 8:39 PM
+Teams and Channels | General | Microsoft Teams
+}else{
+cout<<"this is gradual negative"<<endl;
+if(p2[0]< p1[0]){ swap(p1,p2);
+}
+inta=dy;// y=dy/dxx +c ,,ax+by+c= 0 , F(x,y) =dyx -dxy +Bdx=0
+int b = -dx;
+int d = (2*a - b); // d is decsion parameter int E = 2*a;
+int SE = 2*(a -b);
+putpixel(p2[0],getmaxy()- p2[1] , 255) ; int x = p2[0];
+int y = p2[1];
+while(x > p1[0]){ // 200 , 400::: , 300 , 350---> 300< 200
+if(d >= 0){
+d=d+E; //ifdisnegativethanchooseE,
+}else{
+d= d+SE; y +=1;
+}
+x -= 1; putpixel(x,getmaxy()-y,255);
+}
+}
+}
+void print_point(int *p){
+cout<<" x : "<<p[0]<<" y : "<<p[1]<<endl; }
+// -lbgi -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32
+int main() {
+int dy = p2[1] - p1[1]; int dx = p2[0] - p1[0];
+https://teams.microsoft.com/v2/
+4/5
+
+5/14/24, 8:39 PM
+Teams and Channels | General | Microsoft Teams
+int *p1 = new int(2); int *p2 = new int(2);
+p1[0] = 200; p1[1] = 400;
+p2[0] = 300; p2[1] = 350;
+// cout<<" give point 1 :"; // cin>>p1[0]>>p1[1];
+// cout<<" give point 2 :"; // cin>>p2[0]>>p2[1];
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+mid_point(p2,p1);
+getch(); closegraph(); }
+
+
+https://teams.microsoft.com/v2/
+5/5
+
+
+//===============================
+
+5/14/24, 8:39 PM
+Teams and Channels | General | Microsoft Teams
+q2
+Thursday, May 02, 2024 9:07 PM
+2) Write a program to implement mid-point circle drawing algorithm
+#include<iostream> #include<graphics.h> #include<conio.h> #include<math.h> using namespace std;
+void plotpoints(int x, int y,int *p){ putpixel(x+p[0],getmaxy()-(y+p[1]),255); putpixel(y+p[0],getmaxy()-(x+p[1]),255); putpixel(y+p[0],getmaxy()-(-x+p[1]),255); putpixel(x+p[0],getmaxy()-(-y+p[1]),255); putpixel(-x+p[0],getmaxy()-(-y+p[1]),255); putpixel(-y+p[0],getmaxy()-(-x+p[1]),255); putpixel(-y+p[0],getmaxy()-(x+p[1]),255); putpixel(-x+p[0],getmaxy()-(y+p[1]),255); cout<<x<<", "<<-y<<endl;
+}
+void circle(int *p,int r){
+int x=0,y=r;
+int d=1-r; plotpoints(x,y,p); while(x<y){
+if(d<=0){ d=d+2*x+3;
+} else{
+d=d+2*(x-y)+5;
+y--; }
+x++;
+plotpoints(x,y,p); }
+}
+int main(){
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver); int *p=new int(2);
+int r=50;
+p[0]=100;
+p[1]=100;
+circle(p,r);
+getch(); closegraph(); return 0;
+}
+ https://teams.microsoft.com/v2/
+1/2
+
+5/14/24, 8:39 PM Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+2/2
+
+
+//======================
+
+
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+q3
+Thursday, May 02, 2024 9:09 PM
+3) Write a program to clip a line using Cohen and Sutherland line clipping algorithm.
+// pg 134
+// case 1 --> trivial acceptance
+// case 2 --> trivial rejection
+/*
+||
+|| ||
+| |()
+--------------------------------------- ||
+||
+| 0000 | || ||
+--------------------------------------- ||
+|| || ||
+*/
+#include <iostream> #include <conio.h> #include <math.h> #include "dda.cpp"
+#include <graphics.h>
+using namespace std; typedef unsigned int code;
+double ymin = 100; double ymax = 300;
+double xmin = 100; double xmax = 500;
+enum {
+TOP = 0x8, BOTTOM = 0x4, LEFT = 0x1, RIGHT = 0x2
+};
+ https://teams.microsoft.com/v2/
+1/6
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+class clip_window {
+public:
+double x_max, y_max; double x_min, y_min;
+clip_window() {
+// this->x_max = 2.0 / 3.0 * (getmaxx()); // this->y_max = 2.0 / 3.0 * (getmaxy()); // this->x_min = 1.0 / 3.0 * (getmaxx()); // this->y_min = 1.0 / 3.0 * (getmaxy());
+this->x_max = xmax; this->y_max = ymax; this->x_min = xmin; this->y_min = ymin;
+}
+void print_points() {
+cout << "x max : " << x_max << " y max : " << y_max << endl;
+cout << "x min : " << x_min << " y min : " << y_min << endl; }
+};
+void find_code(double *p, clip_window *clip_w, code &c) {
+if (p[1] > clip_w->y_max) { // top check
+c |= TOP;
+}
+else if (p[1] < clip_w->y_min) {
+c |= BOTTOM; }
+if (p[0] > clip_w->x_max) {
+c |= RIGHT;
+}
+else if (p[0] < clip_w->x_min) {
+c |= LEFT;
+} }
+void cohen_suther_clipp(double x1, double y1, double x2, double y2 ,clip_window *clip_w)
+{
+https://teams.microsoft.com/v2/
+2/6
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+double *p1 = new double(2); double *p0 = new double(2);
+// defining two point of LINE
+p1[0] = x1; p1[1] = y1;
+p0[0] = x2; p0[1] = y2;
+// clip_window *obj = new clip_window(); code code1 = 0;
+code code2 = 0;
+find_code(p0, clip_w, code1); find_code(p1, clip_w, code2);
+int done=0; int accept=0;
+int itr = 1;
+do{
+cout<<"iteration no. "<<itr<<endl; itr++;
+code1 = 0;
+code2 = 0;
+find_code(p0, clip_w, code1); find_code(p1, clip_w, code2);
+if(!(code1|code2)){ // this is case when both code becomes 0000 accept=1;
+done=1;
+break;
+}else if(code1 & code2){ // this is case when one LOGICAL AND IS NON ZERO , trivial rejetced
+done=1;
+break; }
+else{
+double x, y;
+code outside = code1 ? code1 : code2; // we will use one of the outcode which is non zero
+if(code1 == outside){
+cout<<"outside is for : x : "<<p0[0]<<" y : "<<p0[1]<<endl;
+}else{
+https://teams.microsoft.com/v2/
+3/6
+
+5/14/24, 8:40 PM
+cout<<"outside is for : x : "<<p1[0]<<" y : "<<p1[1]<<endl; }
+if (outside & TOP) // if it is non zero it means that the line has intersection with this clippping edge.
+{
+x = p0[0] + ((p1[0] - p0[0]) * (clip_w->y_max - p0[1]) )/ (p1[1] - p0[1]) ;
+y = clip_w->y_max;
+}
+else if (outside & BOTTOM) {
+cout<<"BOTTOM CLIPPING"<<endl;
+x = p0[0] + (clip_w->y_min - p0[1]) * ((p1[0] - p0[0]) / (p1[1] - p0[1]));
+y = clip_w->y_min;
+}
+else if (outside & RIGHT) {
+cout<<"RIGHT CLIPPING"<<endl;
+y = p0[1] + ((p1[1] - p0[1])*(clip_w->x_max - p0[0])) / (p1[0] - p0[0]);
+x = clip_w->x_max; }
+else {
+cout<<"LEFT CLIPPING"<<endl;
+x = clip_w->x_min;
+y = p0[1] + ((p1[1] - p0[1]) / (p1[0] - p0[0])) * (clip_w->x_min - p0[0]);
+}
+if(outside == code1){ p0[0]=x;
+p0[1]=y;
+} else{
+p1[0]=x; p1[1]=y;
+}
+if(code1 == outside){
+Teams and Channels | General | Microsoft Teams
+cout<<"TOP CLIPPING"<<endl;
+p0[0] = x; p0[1] = y;
+}else{ p1[0]=x;
+p1[1]=y; }
+}
+}while(done == 0);
+if(accept){
+//changing p0 to new point ,
+// changing p1 to new point ,
+https://teams.microsoft.com/v2/
+4/6
+
+5/14/24, 8:40 PM
+// draw line
+cout<<"x1 : "<<p0[0]<<" , y1 : "<<p0[1]<<endl; cout<<"x2 : "<<p1[0]<<" , y2 : "<<p1[1]<<endl;
+dda(p0[0],p0[1] , p1[0], p1[1],RED); }
+}
+void drawWindow(clip_window *obj){ dda(obj->x_min,obj->y_min,obj->x_max,obj->y_min,RED); dda(obj->x_min,obj->y_max,obj->x_max,obj->y_max,RED); dda(obj->x_min,obj->y_min,obj->x_min,obj->y_max,RED); dda(obj->x_max,obj->y_min,obj->x_max,obj->y_max,RED);
+}
+int main() {
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+clip_window *obj = new clip_window();
+drawWindow(obj); dda(10,300,200,200, GREEN);
+cohen_suther_clipp(10,300,200,200,obj);
+getch();
+closegraph(); }
+Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+5/6
+
+5/14/24, 8:40 PM Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+6/6
+
+
+//===============
+
+
+
+
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+q4
+Thursday, May 02, 2024 9:09 PM
+4) Write a program to clip a polygon using Sutherland Hodgeman algorithm.
+#include <iostream> #include <vector> #include <utility> #include <conio.h> #include <math.h>
+#include "dda.cpp"
+#include <graphics.h>
+using namespace std;
+// function for in and out check for any vertex , input a vertex and a clipping edge
+// function to find a inttersection
+int in_out_check(int x,int y,int edge,int x1,int y1,int x2,int y2){ //out is 1
+//in is 0 //bottom if(edge==0){
+return (y >= y1) ? 0 : 1; }else if(edge==1){ //right return (x <= x1) ? 0 : 1;
+}else if(edge ==2){ //top return (y <= y1) ? 0 : 1;
+}else{ // left
+return (x >= x1) ? 0 : 1;
+} }
+class Point { public:
+double x;
+double y;
+Point(double x1,double y1){
+x=x1;
+y=y1; }
+};
+void findIntersection( Point* p1, const Point* p2, Point* p3, Point* p4, Point *pp) {
+double x=0; double y =0;
+if((p1->x - p2->x) == 0){ x = p1->x;
+if((p3->y - p4->y) == 0){ y = p3->y;
+}else{
+ https://teams.microsoft.com/v2/
+1/5
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+double m2 = (p4->y - p3->y) / (p4->x - p3->x); double b2 = p3->y - (m2 * p3->x);
+y = m2*x + b2;
+}
+pp->x = x; pp->y = y;
+return; }
+double m1 = (p2->y - p1->y) / (p2->x - p1->x); double m2 = (p4->y - p3->y) / (p4->x - p3->x); double b1 = p1->y - m1 * p1->x;
+double b2 = p3->y - m2 * p3->x;
+// p1 , p2 are point of window
+if(p3->x - p4->x == 0){ // vertical lines
+x = p3->x;
+}else{
+x =(b2 - b1) / (m1 - m2);
+}
+}
+void print_points( vector<pair<double, double> > points){ cout<<"size :: "<<points.size()<<endl;
+for(int i=0;i<points.size();i++){
+cout<<" "<<points[i].first<<" , "<<points[i].second<<endl; }
+}
+void clipping(int x1,int y1, int x2,int y2, vector<pair<double, double> > points,int edge,vector<pair<double, double> >& new_points ){
+// loop for each vertex
+int v1 = -1;
+int v2 = -1;
+Point *p1 =new Point(x1,y1); Point *p2 =new Point(x2,y2); Point *p3 ;
+Point *p4 ;
+for(int i=0;i<(points.size()-1);i++){
+v1 = in_out_check(points[i].first, points[i].second,edge,x1,y1,x2,y2);
+v2 = in_out_check(points[i+1].first,points[i+1].second,edge,x1,y1,x2,y2);
+cout<<"v1 , v2 "<<i<<" , "<<i+1<<" :: "<<v1<<" "<<v2<<endl;
+p3 = new Point(points[i].first, points[i].second);
+p4 = new Point(points[i+1].first,points[i+1].second);
+if(v1 == 0 & v2==0){ // in to in // keep destination
+new_points.push_back(make_pair(p4->x,p4->y));
+y = m1 * x + b1; pp->x = x; pp->y = y;
+https://teams.microsoft.com/v2/
+2/5
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+}else{
+} }
+delete p1; delete p2; delete p3; delete p4;
+// out to out
+}else if(v1==0 & v2==1){ // in to out , keep intersection // find intersection
+Point *pp = new Point(0,0);
+findIntersection(p1, p2, p3, p4,pp); new_points.push_back(make_pair(pp->x,pp->y));
+}else if(v1 ==1 & v2 ==0){ // out to in . keep both
+// find intersection
+Point *pp = new Point(0,0);
+findIntersection(p1, p2, p3, p4,pp); new_points.push_back(make_pair(pp->x,pp->y)); new_points.push_back(make_pair(p4->x,p4->y)); // destination
+new_points.push_back(make_pair(new_points[0].first, new_points[0].second ));
+}
+void copy_vector( vector<pair<double, double> >& points, vector<pair<double, double> >new_points){
+for(int i=0;i<new_points.size();i++){
+points.push_back(make_pair(new_points[i].first, new_points[i].second));
+}
+}
+void draw_object( vector<pair<double, double> >& points,int colorr){ int x1=0;
+int y1=0;
+int x2=0; int y2=0;
+x1 = points[0].first;
+y1 = points[0].second;
+for (int i = 1; i < points.size() ; ++i) {
+x2 = points[i].first;
+y2 = points[i].second;
+dda(x1,y1,x2,y2,colorr);
+https://teams.microsoft.com/v2/
+3/5
+// intersetion
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+x1 = x2; y1 = y2;
+// draw and switch }
+}
+int main(){
+vector<pair<double, double> >points ; vector<pair<double, double> > points_original ;
+points.push_back(make_pair(230,270));//1 points.push_back(make_pair(300,170));//2
+points.push_back(make_pair(390,160));//3 points.push_back(make_pair(320,80));//4
+points.push_back(make_pair(300,0));//5 points.push_back(make_pair(230,70));
+points.push_back(make_pair(150,0)); points.push_back(make_pair(150,80));
+points.push_back(make_pair(50,150)); points.push_back(make_pair(160,170));
+points.push_back(make_pair(230,270));
+copy_vector(points_original,points);
+vector<pair<double, double> >window ; window.push_back(make_pair(100,50)); window.push_back(make_pair(350,50)); window.push_back(make_pair(350,200)); window.push_back(make_pair(100,200)); window.push_back(make_pair(100,50));
+int v = 10;
+int edges = 10;
+// loop for each edge of window // send one pair of coords
+for(int i=0; i<4; i++){
+vector<pair<double, double> >new_points;
+clipping(window[i].first,window[i].second, window[i+1].first, window[i+1].second , points, i, new_points);
+https://teams.microsoft.com/v2/
+4/5
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+points.clear(); copy_vector(points,new_points);
+new_points.clear();
+print_points(points);
+cout<<"iteration no. :: "<<i<<endl; // copy the data from one to other
+}
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+draw_object(window,BLUE); delay(1000);
+draw_object(points_original,RED); delay(1000);
+draw_object(points,GREEN); // bottom , right , top , left // 0, 1, 2, 3
+getch(); closegraph();
+return 0; }
+https://teams.microsoft.com/v2/
+5/5
+
+
+
+
+//=================
+
+
+
+
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+q5
+Thursday, May 02, 2024 9:15 PM
+5) Write a program to fill a polygon using Scan line fill algorithm.
+#include <iostream> #include <vector> #include <utility> // for pair #include <algorithm>
+#include <math.h> #include "dda.cpp"
+#include <conio.h> #include <math.h>
+#include <cmath>
+#include <graphics.h>
+using namespace std;
+// Structure to represent a node in the adjacency list struct Node {
+int vertex; // Index of the vertex
+pair<int, int> point; // Coordinates of the vertex Node(int v, pair<int, int> p) : vertex(v), point(p) {}
+};
+// Function to add an edge between vertices u and v in the adjacency list
+void addEdge(vector<vector<Node> >& adjList, int u, int v, pair<int, int> point_u, pair<int, int> point_v) {
+adjList[u].push_back(Node(v, point_v)); adjList[v].push_back(Node(u, point_u));
+// For undirected graph }
+class EdgeNode {
+public:
+int vertex1; // Index of the vertex int vertex2;
+double x;
+double y;
+double m_inv;
+EdgeNode *ptr;
+EdgeNode(){
+this->x = 0.0; this->y = 0.0; this->m_inv = 0.0; ptr = NULL;
+ https://teams.microsoft.com/v2/
+1/10
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+}
+static bool compareX(const EdgeNode* a, const EdgeNode* b) { return a->x < b->x;
+}
+};
+class vertex_ptr{
+public: EdgeNode *ptr;
+vertex_ptr(){ ptr = NULL;
+} };
+class array_linked_list {
+public: vertex_ptr *arr; int s;
+array_linked_list(int n){
+arr = new vertex_ptr[n]; // s = n;
+}
+};
+void print_global_edge_table(array_linked_list *ged,int n){
+cout<<"\n\nPRINTING GLOBAL EDGE TABLE :: "<<endl;
+for(int i=1;i<=n;i++){
+cout<<"for y is "<<i<<" "<<endl;
+cout<<"-------------------------------------------------------------------- --"<<endl;
+EdgeNode *temp = ged->arr[i].ptr ;
+https://teams.microsoft.com/v2/
+2/10
+
+5/14/24, 8:40 PM
+while(temp != NULL){ // reached to last node
+cout<<"for edge : "<<temp->vertex1<<" , "<<temp- >vertex2<<" , x min : "<<temp->x<<" , y max : "<<temp->y<<" , 1/m is : "<<temp->m_inv;
+cout<<endl;
+temp = temp->ptr; }
+cout<<"-------------------------------------------------------------------- -\n\n"<<endl;
+} }
+void print_edge(vector<pair<int, int> >& edges){
+//cout<<"---------------edge list----------------------------"<<endl; for(int i=0;i<edges.size();i++){
+// cout<<edges[i].first<<" , "<<edges[i].second<<endl; }
+//cout<<"-----------------------------------------------------"<<endl; }
+void scan_line(vector<vector<Node> >& adjList,int n,int y, array_linked_list *ged, vector<pair<int, int> >& edges){
+// find all vertex which has y =4 , and than find adjacent edges
+// and store some flags that will be used to know that those edges, has already been used
+vector <int> vertices;
+for (size_t i = 0; i < adjList.size(); ++i) {
+const Node& node = adjList[i][0]; if(node.point.second == y){
+vertices.push_back(int(i));
+} }
+// now creating GLOBAL EDGE TABLE for each vertex // to keep the edges which are already covered;
+int flag = 0;
+// ged->arr[1] is a pointer
+Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+3/10
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+// y_max will be used later
+int i = y;
+// filling according to increasing y , and increasing x
+for(int j=0;j<vertices.size();j++){ // this access all vertex with y = 4, or i=4 , or some other
+// when j = 0 than we are at 1st vertex whose y =4 // when j = 1 than we are at 2nd vertex whose y =4
+// for each vertex iterate its adjacent vertex vector<int> temp;
+for(int k= 0; k < adjList[vertices[j]].size(); k++){ // this in 1 loop gives all adjacent to 1 vertex
+const Node& node = adjList[vertices[j]][k];
+// here we have all ajacent edges releated to some vertex
+// iteration is giving all vertex , wrt j
+temp.push_back(node.vertex); // contains the adjacent
+}
+// now for each edge we will make a node
+// temp has all the vertex adjacent
+// vertices[j] gives vertex for which we will find edge
+int x1 = adjList[vertices[j]][0].point.first;
+int y1 = adjList[vertices[j]][0].point.second;
+// v1 is vertices[j]
+// v2 inside ,, if ( v1,v2) is found in any pair in edge vectore than we will skip it
+for(int p=0;p<temp.size();p++){
+// this is v2
+j
+vertexs
+https://teams.microsoft.com/v2/
+4/10
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+vertices[j] ){
+if(edges[c].first == temp[p] && edges[c].second ==
+flag = -1; break;
+}
+if(edges[c].first == vertices[j] && edges[c].second ==
+flag = -1; break;
+temp[p] ){
+int x2 = adjList[temp[p]][0].point.first;
+int y2 = adjList[temp[p]][0].point.second;
+// check for complete list of edges for already done
+for(int c=0; c<edges.size();c++){
+} }
+if(flag == -1){ flag =0;
+// calculate for next edge continue;
+}
+cout<<"working for :: (x1,x2) : ( "<<x1<<" , "<<y1<<" )"<<"
+//
+and "<<" , ( "<<x2<<" , "<<y2<<" ) "<<endl;
+intminX=(y1<y2)?x1:y2; //forxwhicheverhas minmum y
+int maxY = (y1 > y2) ? y1 : y2;
+if( ged->arr[i].ptr == NULL){ ged->arr[i].ptr = new EdgeNode();
+y1*1.0 )*1.0 ;
+https://teams.microsoft.com/v2/
+5/10
+ged->arr[i].ptr->x = minX; ged->arr[i].ptr->y = maxY;
+ged->arr[i].ptr->m_inv = (x2*1.0 - x1*1.0)*1.0 / (y2*1.0 -
+ged->arr[i].ptr->vertex1 = vertices[j]; ged->arr[i].ptr->vertex2 = temp[p];
+edges.push_back(make_pair(vertices[j], temp[p]));
+}else{
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+EdgeNode *tempp = ged->arr[i].ptr ;
+while(tempp->ptr != NULL){ // reached to last node tempp = tempp->ptr;
+}
+tempp->ptr = new EdgeNode(); tempp->ptr->x = minX; tempp->ptr->y = maxY; tempp->ptr->vertex1 = vertices[j]; tempp->ptr->vertex2 = temp[p];
+tempp->ptr->m_inv = (x2*1.0 - x1*1.0)*1.0 / (y2*1.0 -
+edges.push_back(make_pair( vertices[j], temp[p]));
+} }
+} }
+void move_edges(int y_min, vector<vector<Node> >& adjList, vector<EdgeNode *>& active_edges , array_linked_list *ged ){
+//cout<<"============================================== ==============\n";
+EdgeNode *temp = ged->arr[y_min].ptr ;
+while(temp != NULL){ // reached to last node
+// cout<<temp->vertex1<<" , "<<temp->vertex2<<endl;
+active_edges.push_back(temp); temp = temp->ptr;
+}
+//cout<<"============================================== ================\n";
+}
+void remove_from_active_edge(vector<EdgeNode *>& active_edges,int y){
+for(int i=0;i< active_edges.size();i++){
+// cout<<"v1 : "<<active_edges[i]->vertex1<<" , "<<active_edges[i]- >vertex2<<endl;
+if(active_edges[i]->y == y){ // remove it
+// cout<<"remove it : "<<endl; int indexToRemove = i;
+y1*1.0 )*1.0 ;
+https://teams.microsoft.com/v2/
+6/10
+
+5/14/24, 8:40 PM
+if (indexToRemove >= 0 && indexToRemove < active_edges.size()) {
+active_edges.erase(active_edges.begin() + indexToRemove);
+} else {
+// std::cout << "Index out of range" << std::endl;
+} }
+} }
+void print_active_edge_table(vector<EdgeNode *>& active_edges ){
+cout<<"------------------------------------------ACTIVE EDGE TABLE------- -------------------------------------\n"<<endl;
+for(int i=0;i<active_edges.size();i++){
+cout<<"v1 : "<<active_edges[i]->vertex1<<" , v2 is : " <<active_edges[i]->vertex2<<endl;
+}
+cout<<"-------------------------------------------------------------------------- ----------------------------\n"<<endl;
+}
+void make_pair_and_print(vector<EdgeNode *>& active_edges,int y ){
+int x1 = 0; int y1 = y;
+int x2 = 0; int y2 = y;
+for(int i =0 ;i<active_edges.size(); i +=2){
+x1 = active_edges[i]->x; x2 = active_edges[i+1]->x;
+cout<<"pair : "<<x1<<" , "<<y1<<" and "<<x2<<" , " <<y2<<endl;
+dda(x1,y1,x2,y2,GREEN);
+} }
+void increment_x(vector<EdgeNode *>& active_edges){
+for(int i =0 ;i<active_edges.size(); i++){
+if(!isinf(active_edges[i]->m_inv)){
+active_edges[i]->x = active_edges[i]->x + active_edges[i]- >m_inv ;
+}
+}
+Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+7/10
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+}
+void scan_algo(array_linked_list *ged,int y_min, int y_max, vector<vector<Node> >& adjList){
+int y = y_min;
+vector<EdgeNode *> active_edges ; // active edge table is empty
+int get = 5; int aet = 0;
+while(y <= y_max){ // repeat until aet and get is empty
+//move from et to aet those y_min = y move_edges(y,adjList, active_edges,ged); // remove those has y = y_max
+remove_from_active_edge(active_edges,y);
+// sort aet on x basis
+std::sort(active_edges.begin(), active_edges.end(), EdgeNode::compareX);
+// cout<<"sorted list :============================\n";
+// cout<<"=================check if there is any changes in GLOBAL EDGE TABLE==============\n";
+// print_global_edge_table(ged,y_max);
+// make pairs from aet using y
+// print_active_edge_table(active_edges); make_pair_and_print(active_edges,y);
+y +=1;
+// increment with slope
+if(y< y_max){ increment_x(active_edges);
+}else{ break;
+}
+}
+https://teams.microsoft.com/v2/
+8/10
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+}
+int main() {
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+int numVertices = 6;
+// Initialize adjacency list vector<vector<Node> > adjList(numVertices);
+// Store points associated with each vertex vector<pair<int, int> > points;
+int y_min = 100;
+int y_max = 400; points.push_back(make_pair(200,100)); points.push_back(make_pair(50,300)); points.push_back(make_pair(80,400));
+points.push_back(make_pair(200,350)); points.push_back(make_pair(300,400)); points.push_back(make_pair(350,310));
+// Add some edges addEdge(adjList, 1, addEdge(adjList, 2, addEdge(adjList, 3, addEdge(adjList, 4, addEdge(adjList, 5, addEdge(adjList, 0,
+vector<pair<int, int>
+0, points[0], points[1]); 1, points[1], points[2]); 2, points[2], points[3]); 3, points[3], points[4]); 4, points[4], points[5]); 5, points[5], points[0]);
+> edges;
+array_linked_list *ged = new array_linked_list(y_max+1);
+https://teams.microsoft.com/v2/
+9/10
+
+5/14/24, 8:40 PM
+Teams and Channels | General | Microsoft Teams
+for(int i= y_min ;i <= y_max ;i++){ scan_line(adjList,numVertices,i,ged,edges);
+} //print_global_edge_table(ged,y_max);
+scan_algo(ged,y_min,y_max,adjList);
+cout<<"done"<<endl;
+getch(); closegraph();
+return 0; }
+https://teams.microsoft.com/v2/
+10/10
+
+
+
+
+//====================
+
+
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+q6
+Thursday, May 02, 2024 9:09 PM
+6) Write a program to apply various 2D transformations on a 2D object (use homogenous coordinates).
+=========================== reflection about an arbitary axis====================
+#include <iostream> #include <conio.h> #include <math.h>
+#include "dda.cpp" #include <graphics.h>
+using namespace std;
+void matrixMultiplication(double **mat1, int rows1, int cols1, double **mat2, int rows2, int cols2,
+double **result) {
+if (cols1 != rows2) {
+std::cerr << "Error: Matrix dimensions \n"; return;
+}
+for (int i = 0; i < rows1; ++i) { for (int j = 0; j < cols2; ++j) {
+result[i][j] = 0;
+for (int k = 0; k < cols1; ++k) {
+result[i][j] += mat1[i][k] * mat2[k][j]; }
+} }
+}
+void print_sq_arr(double **arr ,int row, int col){
+for(int i=0;i<row;i++){ for(int j=0;j<col;j++){
+cout<<arr[i][j]<<" , "; }
+cout<<endl; }
+}
+double **make_hom_2d_array_zero(int row,int col){ double **arr = new double*[row];
+for(int i=0;i<row;i++){
+arr[i] = new double[col];
+}
+for(int i=0;i<row;i++){
+ https://teams.microsoft.com/v2/
+1/21
+
+5/14/24, 8:41 PM
+for(int j=0;j<col;j++){ arr[i][j]=0.0;
+} }
+return &*arr; }
+double **make_hom_2d_array_ones(int row,int col){ double **arr = new double*[row];
+for(int i=0;i<row;i++){
+arr[i] = new double[col];
+}
+for(int i=0;i<row;i++){
+for(int j=0;j<col;j++){ arr[i][j]=1.0;
+} }
+return &*arr; }
+void fill_composite_matrix(double **arr,double m, double c){
+arr[0][0] = (1 - pow(m,2) )/ (1 + pow(m,2)); arr[1][0] = (2*m )/ (1 + pow(m,2)); arr[2][0] = (-2*c*m )/ (1 + pow(m,2));
+arr[0][1] = (2*m )/ (1 + pow(m,2));
+arr[1][1] = ( pow(m,2) -1 )/ (1 + pow(m,2)); arr[2][1] = (2*c )/ (1 + pow(m,2));
+arr[2][2] = 1;
+}
+void draw_square(double **arr,int r,int c,int colorr){ dda(arr[0][0], arr[0][1], arr[1][0], arr[1][1],colorr);
+dda( arr[2][0], arr[2][1],arr[1][0], arr[1][1],colorr); //200, 100 dda(arr[2][0], arr[2][1], arr[3][0], arr[3][1],colorr);
+dda( arr[0][0], arr[0][1],arr[3][0], arr[3][1],colorr);
+}
+Teams and Channels | General | Microsoft Teams
+void draw_mirror(double m, double c){ // bcoz it fails at vertical line
+double y1=0, x1=0, y2=0, x2=0; if(m !=0){
+y1 = m*(0) + c;
+y2 = m*(getmaxx()) + c; x1 = (y1 - c)/m;
+x2 = (y2 - c)/m;
+}else{
+x1 = 0;
+x2 = getmaxx(); y1 = c;
+y2 = c;
+} dda(x1,y1,x2,y2,GREEN);
+}
+https://teams.microsoft.com/v2/
+2/21
+200, 0
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+int main() {
+int gd = DETECT, gm; char pathtodriver[] = "";
+initgraph(&gd, &gm, pathtodriver);
+double **mat = make_hom_2d_array_zero(3,3);
+double m =1.0; double c =-20.0;
+draw_mirror(m,c); // 0 for horizontal , 1 for vertical , y = 200
+fill_composite_matrix(mat,m,c);
+int row = 4;
+double **arr = make_hom_2d_array_ones(row,3);
+//x
+arr[0][0] = 100; arr[1][0] = 200; arr[2][0] = 200; arr[3][0] = 100;
+//y
+arr[0][1] =0; arr[1][1] =0; arr[2][1] =100; arr[3][1] =100;
+draw_square(arr,row,3,GREEN);
+double **res = make_hom_2d_array_zero(row,3);
+matrixMultiplication(arr,row,3,mat,3,3,res); draw_square(res,row,3,BLUE);
+// will fail only for vertical line
+getch(); closegraph();
+return 0;
+}
+https://teams.microsoft.com/v2/
+3/21
+
+5/14/24, 8:41 PM
+//================================ ROTATION. + translation ====================
+#include <iostream> #include <conio.h> #include <math.h> #include "dda.cpp"
+#include <graphics.h> using namespace std;
+#define M_PI 3.14159265358979323846
+class my_matrix{
+public:
+double** matrix ; int row;
+int col;
+my_matrix(){ }
+my_matrix(int r,int v){
+row = r;
+col = 3; // for homogeneous
+matrix = new double*[r];
+// Allocate memory for each row for (int i = 0; i < r; ++i) {
+matrix[i] = new double[3]; // Create an array of integers for each row
+}
+// Initialize each element to 1 for (int i = 0; i < r; ++i) {
+for (int j = 0; j < 3; ++j) { matrix[i][j] = v;
+} }
+}
+void print_obj(){
+cout<<"-------------------------------------OBJECT------------------------- ------------------\n";
+for (int i = 0; i < row; ++i) { for (int j = 0; j < col; ++j) {
+std::cout << matrix[i][j] << " "; }
+std::cout << std::endl; }
+Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+4/21
+
+5/14/24, 8:41 PM
+cout<<"----------------------------------------------------------------------- ------------------\n";
+Teams and Channels | General | Microsoft Teams
+}
+void deallocate_matrix(){
+// Free dynamically allocated memory
+for (int i = 0; i < row; ++i) { delete[] matrix[i];
+}
+delete[] matrix; }
+};
+double angle_to_radian(double degrees){ return degrees * (M_PI / 180.0);
+}
+void draw_object(my_matrix *obj,int colorr){ int x1=0;
+int y1=0;
+int x2=0; int y2=0;
+x1 = obj->matrix[0][0]; y1 = obj->matrix[0][1];
+for (int i = 1; i < obj->row; ++i) {
+x2 = obj->matrix[i][0]; y2 = obj->matrix[i][1];
+dda(x1,y1,x2,y2,colorr);
+x1 = x2; y1 = y2;
+// draw and switch }
+dda(x1,y1, obj->matrix[0][0], obj->matrix[0][1],colorr); }
+void create_rotation_matrix(double degrees, my_matrix *obj){ in degree , can be used -90 degree
+// angle is
+obj->matrix[0][0] = round(cos(angle_to_radian(degrees)) * 10000) / 10000;
+obj->matrix[1][1] = round(cos(angle_to_radian(degrees)) * 10000) / 10000 ;
+obj->matrix[0][1] = round(sin(angle_to_radian(degrees))* 10000) / 10000 ;
+obj->matrix[1][0] = round(-sin(angle_to_radian(degrees)) * 10000) / 10000;
+obj->matrix[2][2] = 1;
+}
+https://teams.microsoft.com/v2/
+5/21
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+void matrix_multiplication(my_matrix *obj , my_matrix *scaling , my_matrix *result){
+// Function to perform matrix multiplication if (obj->col != scaling->row) {
+std::cerr << "Error: Matrix dimensions mismatch for multiplication." << std::endl;
+exit(1); }
+for (int i = 0; i < obj->row; ++i) {
+for (int j = 0; j < scaling ->col; ++j) {
+result -> matrix[i][j] = 0;
+for (int k = 0; k < obj -> col ; ++k) {
+result -> matrix[i][j] += obj->matrix[i][k] * scaling -> matrix[k]
+[j];
+}
+} }
+}
+void create_translation_matrix(int tx,int ty, my_matrix *obj){ obj->matrix[0][0] = 1;
+obj->matrix[1][1] = 1;
+obj->matrix[2][2] = 1;
+obj->matrix[2][0] = tx;
+obj->matrix[2][1] = ty; }
+int main(){
+int r = 4 ;
+// cout<<"\ngive the number of points : ";
+// cin>>r; my_matrix *obj;
+if(r>=1){
+cout<<"matrix made"<<endl; obj = new my_matrix(r,1); obj->print_obj();
+}else{
+cout<<"invalid input"; return 0;
+}
+// // //
+//
+// //
+// //
+int temp =0; double x =0; double y = 0;
+while(temp < r){
+cout<<"x , y : "; cin>>x>>y;
+obj->matrix[temp][0] = x; obj->matrix[temp][1] = y;
+https://teams.microsoft.com/v2/
+6/21
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+// temp +=1;
+// }
+//x
+obj->matrix[0][0] = 100; obj->matrix[1][0] = 200; obj->matrix[2][0] = 200; obj->matrix[3][0] = 100;
+//y
+obj->matrix[0][1] =0; obj->matrix[1][1] =0; obj->matrix[2][1] =100; obj->matrix[3][1] =100;
+double degrees = 45.0 ;
+// cout<<"\nrotation factor in x : "; // cin>>degrees;
+my_matrix *rotation_matrix = new my_matrix(3,0); create_rotation_matrix(degrees, rotation_matrix);
+//4 x3 3x3--> 4x3
+// before rotation translate centroid to center double x_centroid = 0;
+double y_centroid= 0;
+for(int i =0;i<obj->row;i++){ x_centroid += obj->matrix[i][0]; y_centroid += obj->matrix[i][1];
+}
+x_centroid = -1*(x_centroid / obj->row); y_centroid = -1*(y_centroid / obj->row);
+my_matrix *translation_mat = new my_matrix(3,0);
+// translation
+my_matrix *result1 = new my_matrix(r,0); create_translation_matrix(x_centroid , y_centroid,translation_mat); matrix_multiplication(obj,translation_mat,result1);
+//rotation
+my_matrix *result2 = new my_matrix(r,0); matrix_multiplication(result1,rotation_matrix, result2);
+my_matrix *translation_mat_inv = new my_matrix(3,0);
+https://teams.microsoft.com/v2/
+7/21
+
+5/14/24, 8:41 PM
+create_translation_matrix(-1*x_centroid , -1*y_centroid, translation_mat_inv);
+// inverse translation
+my_matrix *result3 = new my_matrix(r,0); matrix_multiplication(result2 , translation_mat_inv, result3);
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+draw_object(obj,GREEN); draw_object(result3,RED);
+getch(); closegraph();
+return 0; }
+//=================================. SCALING=========================
+#include <iostream> #include <conio.h> #include <math.h> #include "dda.cpp"
+#include <graphics.h> using namespace std;
+class my_matrix{ // 6 x 3 {object , triangle , square , polygon} 3 x 3 { scaling matrix, scaling} --> 6 x 3
+public:
+int** matrix ; int row;
+int col;
+my_matrix(){
+}
+my_matrix(int r,int v){ // 0, 1 object ,,1 transfo 0
+row = r;
+col = 3; // for homogeneous
+matrix = new int*[r];
+// Allocate memory for each row for (int i = 0; i < r; ++i) {
+matrix[i] = new int[3]; // Create an array of integers for each }
+// Initialize each element to 1
+Teams and Channels | General | Microsoft Teams
+row
+https://teams.microsoft.com/v2/
+8/21
+
+5/14/24, 8:41 PM
+for (int i = 0; i < r; ++i) { for (int j = 0; j < 3; ++j) {
+matrix[i][j] = v; }
+} }
+void print_obj(){
+cout<<"-------------------------------------OBJECT------------------------- ------------------\n";
+for (int i = 0; i < row; ++i) { for (int j = 0; j < col; ++j) {
+std::cout << matrix[i][j] << " "; }
+std::cout << std::endl; }
+cout<<"----------------------------------------------------------------------- ------------------\n";
+}
+void deallocate_matrix(){
+// Free dynamically allocated memory
+for (int i = 0; i < row; ++i) { delete[] matrix[i];
+}
+delete[] matrix; }
+};
+void create_scaling_matrix(int sx,int sy, my_matrix *obj){ obj->matrix[0][0] = sx;
+obj->matrix[1][1] = sy;
+obj->matrix[2][2] = 1;
+}
+// object x scaling matrix - -> result
+void matrix_multiplication(my_matrix *obj , my_matrix *scaling , my_matrix *result){
+// Function to perform matrix multiplication
+if (obj->col != scaling->row) {
+std::cerr << "Error: Matrix dimensions mismatch for multiplication." << std::endl;
+exit(1); }
+for (int i = 0; i < obj->row; ++i) {
+for (int j = 0; j < scaling ->col; ++j) {
+result -> matrix[i][j] = 0;
+for (int k = 0; k < obj -> col ; ++k) {
+result -> matrix[i][j] += obj->matrix[i][k] * scaling -> matrix[k]
+[j];
+}
+} }
+}
+Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+9/21
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+// [x1, y1, 1] //[ x2, y2, 1] //[ x3 , y3, 1] //[x4, y4, 1]
+void draw_object(my_matrix *obj,int colorr){ int x1=0;
+int y1=0;
+int x2=0; int y2=0;
+x1 = obj->matrix[0][0]; y1 = obj->matrix[0][1];
+for (int i = 1; i < obj->row; ++i) {
+x2 = obj->matrix[i][0]; y2 = obj->matrix[i][1];
+dda(x1,y1,x2,y2,colorr);
+x1 = x2; y1 = y2;
+// draw and switch }
+dda(x1,y1, obj->matrix[0][0], obj->matrix[0][1],colorr); }
+int main(){
+int r = 4;
+// cout<<"\ngive the number of points : "; // cin>>r;
+my_matrix *obj;
+if(r>=1){
+cout<<"matrix made"<<endl; obj = new my_matrix(r,1); obj->print_obj();
+}else{
+cout<<"invalid input"; return 0;
+}
+int temp =0; int x =0;
+https://teams.microsoft.com/v2/
+10/21
+
+5/14/24, 8:41 PM
+int y = 0;
+Teams and Channels | General | Microsoft Teams
+//
+// //
+// //
+//
+//
+//x
+//x
+obj->matrix[0][0] = 100; obj->matrix[1][0] = 200; obj->matrix[2][0] = 200; obj->matrix[3][0] = 100;
+//y
+obj->matrix[0][1] =0; obj->matrix[1][1] =0; obj->matrix[2][1] =100; obj->matrix[3][1] =100;
+cout<<endl;
+int sx = 2 ;
+int sy = 2;
+// cout<<"scaling factor in x : "; // cin>>sx;
+// cout<<"scaling factor in y : "; // cin>>sy;
+my_matrix *scaling_matrix = new my_matrix(3,0); // 3 x 3 , default 0 create_scaling_matrix(sx,sy,scaling_matrix);
+while(temp < r){
+cout<<"x , y : "; cin>>x>>y;
+obj->matrix[temp][0] = x; obj->matrix[temp][1] = y;
+temp +=1;
+}
+cout<<"scaling matrix::"<<endl; scaling_matrix->print_obj();
+cout<<"\nyour input :"<<endl; obj->print_obj();
+my_matrix *result = new my_matrix(r,0); // 4 x 3
+3 x 3 --> 4 x 3
+matrix_multiplication(obj,scaling_matrix,result); // pre multiplication
+cout<<"=============================RESULT============ ======================\n";
+result->print_obj();
+https://teams.microsoft.com/v2/
+11/21
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+draw_object(obj,BLUE); draw_object(result,GREEN);
+getch(); closegraph();
+return 0; }
+//============================== SHEAR ===========================================
+#include <iostream> #include <conio.h> #include <math.h> #include "dda.cpp"
+#include <graphics.h> using namespace std;
+class my_matrix{
+public:
+int** matrix ; int row;
+int col;
+my_matrix(){
+}
+my_matrix(int r,int v){
+row = r;
+col = 3; // for homogeneous
+matrix = new int*[r];
+// Allocate memory for each row for (int i = 0; i < r; ++i) {
+matrix[i] = new int[3]; // Create an array of integers for each
+row
+}
+https://teams.microsoft.com/v2/
+12/21
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+// Initialize each element to 1 for (int i = 0; i < r; ++i) {
+for (int j = 0; j < 3; ++j) { matrix[i][j] = v;
+} }
+}
+void print_obj(){
+cout<<"-------------------------------------OBJECT------------------------- ------------------\n";
+for (int i = 0; i < row; ++i) { for (int j = 0; j < col; ++j) {
+std::cout << matrix[i][j] << " "; }
+std::cout << std::endl; }
+cout<<"----------------------------------------------------------------------- ------------------\n";
+}
+void deallocate_matrix(){
+// Free dynamically allocated memory
+for (int i = 0; i < row; ++i) { delete[] matrix[i];
+}
+delete[] matrix; }
+};
+void create_shear_matrix(int sx,int sy, my_matrix *obj){ obj->matrix[0][0] = 1;
+obj->matrix[1][1] = 1;
+obj->matrix[2][2] = 1;
+obj->matrix[0][1] = sy; obj->matrix[1][0] = sx;
+// [1 sy 0] // [sx 1 0] //[0 01]
+}
+void matrix_multiplication(my_matrix *obj , my_matrix *shear_mat , my_matrix *result){
+// Function to perform matrix multiplication
+if (obj->col != shear_mat->row) {
+https://teams.microsoft.com/v2/
+13/21
+
+5/14/24, 8:41 PM
+std::cerr << "Error: Matrix dimensions mismatch for multiplication." << std::endl;
+exit(1); }
+for (int i = 0; i < obj->row; ++i) {
+for (int j = 0; j < shear_mat ->col; ++j) {
+result -> matrix[i][j] = 0;
+for (int k = 0; k < obj -> col ; ++k) {
+result -> matrix[i][j] += obj->matrix[i][k] * shear_mat -> matrix[k][j];
+}
+} }
+}
+void draw_object(my_matrix *obj,int colorr){ int x1=0;
+int y1=0;
+int x2=0; int y2=0;
+x1 = obj->matrix[0][0]; y1 = obj->matrix[0][1];
+for (int i = 1; i < obj->row; ++i) {
+x2 = obj->matrix[i][0]; y2 = obj->matrix[i][1];
+dda(x1,y1,x2,y2,colorr);
+x1 = x2; y1 = y2;
+// draw and switch }
+dda(x1,y1, obj->matrix[0][0], obj->matrix[0][1],colorr); }
+int main(){
+int r =4 ;
+// cout<<"\ngive the number of points : ";
+Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+14/21
+
+5/14/24, 8:41 PM
+// cin>>r; my_matrix *obj;
+if(r>=1){
+cout<<"matrix made"<<endl; obj = new my_matrix(r,1); obj->print_obj();
+}else{
+cout<<"invalid input"; return 0;
+}
+int temp =0; int x =0;
+int y = 0;
+Teams and Channels | General | Microsoft Teams
+//
+// //
+// //
+//
+//
+//x
+obj->matrix[0][0] = 100; obj->matrix[1][0] = 200; obj->matrix[2][0] = 200; obj->matrix[3][0] = 100;
+//y
+obj->matrix[0][1] =0; obj->matrix[1][1] =0; obj->matrix[2][1] =100; obj->matrix[3][1] =100; cout<<endl;
+int sx = 2 ;
+int sy = 1;
+// cout<<"shear factor in x : "; // cin>>sx;
+// cout<<"shear factor in y : "; // cin>>sy;
+my_matrix *shear_matrix = new my_matrix(3,0);; create_shear_matrix(sx,sy,shear_matrix);
+cout<<"\nyour input :"<<endl; obj->print_obj();
+my_matrix *result = new my_matrix(r,0); // 4 x 3 matrix_multiplication(obj,shear_matrix,result);
+while(temp < r){
+cout<<"x , y : "; cin>>x>>y;
+obj->matrix[temp][0] = x; obj->matrix[temp][1] = y;
+temp +=1;
+}
+https://teams.microsoft.com/v2/
+15/21
+3 x 3 --> 4 x 3
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+draw_object(obj,BLUE); draw_object(result,GREEN);
+result->print_obj();
+getch(); closegraph();
+return 0; }
+//=====================
+//6) Write a program to apply various 2D transformations on a 2D object (use homogenous
+//coordinates).
+#include <iostream> #include <conio.h> #include <math.h> #include "dda.cpp"
+#include <graphics.h>
+using namespace std;
+class my_matrix{
+public:
+int** matrix ; int row;
+int col;
+my_matrix(){
+}
+my_matrix(int r,int v){
+https://teams.microsoft.com/v2/
+16/21
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+row = r;
+col = 3; // for homogeneous
+matrix = new int*[r];
+// Allocate memory for each row for (int i = 0; i < r; ++i) {
+matrix[i] = new int[3]; // Create an array of integers for each }
+// Initialize each element to 1 for (int i = 0; i < r; ++i) {
+for (int j = 0; j < 3; ++j) { matrix[i][j] = v;
+} }
+}
+void print_obj(){
+cout<<"-------------------------------------OBJECT------------------------- ------------------\n";
+for (int i = 0; i < row; ++i) { for (int j = 0; j < col; ++j) {
+std::cout << matrix[i][j] << " "; }
+std::cout << std::endl; }
+cout<<"----------------------------------------------------------------------- ------------------\n";
+}
+void deallocate_matrix(){
+// Free dynamically allocated memory
+for (int i = 0; i < row; ++i) { delete[] matrix[i];
+}
+delete[] matrix; }
+};
+void create_scaling_matrix(int tx,int ty, my_matrix *obj){ obj->matrix[0][0] = 1;
+obj->matrix[1][1] = 1;
+obj->matrix[2][2] = 1;
+obj->matrix[2][0] = tx; obj->matrix[2][1] = ty;
+row
+https://teams.microsoft.com/v2/
+17/21
+
+5/14/24, 8:41 PM
+// [ 1 0 0] // [ 0 1 0] // [tx ty 1]
+}
+void matrix_multiplication(my_matrix *obj , my_matrix *scaling , my_matrix *result){
+// Function to perform matrix multiplication
+if (obj->col != scaling->row) {
+std::cerr << "Error: Matrix dimensions mismatch for multiplication." << std::endl;
+exit(1); }
+for (int i = 0; i < obj->row; ++i) {
+for (int j = 0; j < scaling ->col; ++j) {
+result -> matrix[i][j] = 0;
+for (int k = 0; k < obj -> col ; ++k) {
+result -> matrix[i][j] += obj->matrix[i][k] * scaling -> matrix[k]
+[j];
+}
+} }
+}
+void draw_object(my_matrix *obj,int colorr){ int x1=0;
+int y1=0;
+int x2=0; int y2=0;
+x1 = obj->matrix[0][0]; y1 = obj->matrix[0][1];
+for (int i = 1; i < obj->row; ++i) {
+x2 = obj->matrix[i][0]; y2 = obj->matrix[i][1];
+dda(x1,y1,x2,y2,colorr);
+x1 = x2; y1 = y2;
+Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+18/21
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+// draw and switch }
+dda(x1,y1, obj->matrix[0][0], obj->matrix[0][1],colorr); }
+int main(){
+int r = 4 ;
+cout<<"\ngive the number of points : ";
+// cin>>r; my_matrix *obj;
+if(r>=1){
+cout<<"matrix made"<<endl; obj = new my_matrix(r,1); obj->print_obj();
+}else{
+cout<<"invalid input"; return 0;
+}
+int temp =0; int x =0;
+int y = 0;
+//
+// //
+// //
+//
+//
+//x
+obj->matrix[0][0] = 100; obj->matrix[1][0] = 200; obj->matrix[2][0] = 200; obj->matrix[3][0] = 100;
+//y
+obj->matrix[0][1] =0; obj->matrix[1][1] =0; obj->matrix[2][1] =100; obj->matrix[3][1] =100; cout<<endl;
+int tx = 0 ;
+int ty = 0;
+cout<<"translation factor in x : "; cin>>tx;
+while(temp < r){
+cout<<"x , y : "; cin>>x>>y;
+obj->matrix[temp][0] = x; obj->matrix[temp][1] = y;
+temp +=1;
+}
+https://teams.microsoft.com/v2/
+19/21
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+cout<<"translation factor in y : "; cin>>ty;
+my_matrix *translation_matrix = new my_matrix(3,0);
+create_scaling_matrix(tx,ty,translation_matrix);
+cout<<"translation matrix::"<<endl; translation_matrix->print_obj();
+cout<<"\nyour input :"<<endl; obj->print_obj();
+my_matrix *result = new my_matrix(r,0); // 4 x 3
+matrix_multiplication(obj,translation_matrix,result);
+3 x 3 --> 4 x 3
+cout<<"=============================RESULT============ ======================\n";
+result->print_obj();
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+draw_object(obj,RED); draw_object(result,BLUE);
+getch(); closegraph();
+return 0; }
+//============================
+https://teams.microsoft.com/v2/
+20/21
+
+5/14/24, 8:41 PM Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+21/21
+
+
+//==============================
+
+
+
+
+
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+q7
+Thursday, May 02, 2024 9:09 PM
+7) Write a program to apply various 3D transformations on a 3D object and then apply parallel and perspective projection on it.
+//==================ROTATION 3D PERSPECTIVE==========================
+#include <iostream> #include <conio.h> #include <math.h>
+#include "C:\Users\akash\OneDrive\Desktop\26th_april\dda.cpp" //#include "C:\Users\akash\OneDrive\Desktop\26th_april\dda.cpp"
+#include <vector> #include <utility>
+#include <graphics.h> using namespace std;
+double degreesToRadians(double degrees) { return degrees * M_PI / 180.0;
+}
+class my_matrix{ public:
+double** matrix ; int row;
+int col;
+my_matrix(){
+}
+my_matrix(int r,int v){
+row = r;
+col = 4; // for homogeneous
+matrix = new double*[r];
+// Allocate memory for each row for (int i = 0; i < r; ++i) {
+matrix[i] = new double[col]; // Create an array of integers for each row
+}
+// Initialize each element to 1 for (int i = 0; i < r; ++i) {
+for (int j = 0; j < col; ++j) { matrix[i][j] = v;
+} }
+}
+ https://teams.microsoft.com/v2/
+1/24
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+void print_obj(){
+cout<<"-------------------------------------OBJECT------------------------- ------------------\n";
+for (int i = 0; i < row; ++i) { for (int j = 0; j < col; ++j) {
+std::cout << matrix[i][j] << " "; }
+std::cout << std::endl; }
+cout<<"----------------------------------------------------------------------- ------------------\n";
+}
+void deallocate_matrix(){
+// Free dynamically allocated memory
+for (int i = 0; i < row; ++i) { delete[] matrix[i];
+}
+delete[] matrix; }
+};
+void create_scaling_matrix(int sx,int sy,int sz, my_matrix *obj){ obj->matrix[0][0] = sx;
+obj->matrix[1][1] = sy;
+obj->matrix[2][2] = sz;
+obj->matrix[3][3] = 1;
+}
+void create_rotation_matrix_x_axis(double angle, my_matrix *obj){ // x_axis
+double radians = degreesToRadians(angle); obj->matrix[0][0] = 1;
+obj->matrix[3][3] = 1;
+obj->matrix[1][1] = cos(radians); obj->matrix[1][2] = sin(radians);
+obj->matrix[2][2] = cos(radians); obj->matrix[2][1] = -1*sin(radians);
+}
+void create_perspective_matrix(double angle, double zc , my_matrix *obj){
+double radians = degreesToRadians(angle);
+obj->matrix[0][0] = cos(radians); obj->matrix[0][3] = sin(radians)/zc;
+obj->matrix[1][1] = 1;
+https://teams.microsoft.com/v2/
+2/24
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+obj->matrix[2][2] = 0; obj->matrix[3][3] = 1;
+obj->matrix[3][1] = 2;
+obj->matrix[2][0] = sin(radians); obj->matrix[2][3] = (-1*cos(radians))/zc;
+}
+void matrix_multiplication(my_matrix *obj , my_matrix *scaling , my_matrix *result){
+// Function to perform matrix multiplication
+if (obj->col != scaling->row) {
+std::cerr << "Error: Matrix dimensions mismatch for multiplication." << std::endl;
+exit(1); }
+for (int i = 0; i < obj->row; ++i) {
+for (int j = 0; j < scaling ->col; ++j) {
+result -> matrix[i][j] = 0;
+for (int k = 0; k < obj -> col ; ++k) {
+result -> matrix[i][j] += obj->matrix[i][k] * scaling -> matrix[k]
+[j];
+}
+} }
+}
+void draw_object(my_matrix *obj,int colorr){ int x1=0;
+int y1=0;
+int x2=0;
+int y2=0;
+x1 = obj->matrix[0][0]; y1 = obj->matrix[0][1];
+vector< pair< double, double> > points; vector< pair< double, double> > points2;
+// only for 6 faces
+for(int i=0;i< 4;i++){ points.push_back(make_pair(obj->matrix[i][0],obj->matrix[i][1])); if(i==3){
+points.push_back(make_pair(obj->matrix[0][0],obj->matrix[0][1])); }
+}
+for(int i=4;i< 8;i++){
+https://teams.microsoft.com/v2/
+3/24
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+points2.push_back(make_pair(obj->matrix[i][0],obj->matrix[i][1]));
+}
+for(int i=0;i<4;i++){
+//print LINE 1
+cout<<points[i].first<< " , "<<points[i].second<<" <<points[i+1].first<< " , "<<points[i+1].second<<" : : ";
+delay(1000);
+: : "
+dda(points[i].first, points[i].second , points[i+1].first, points[i+1].second , colorr );
+cout<<endl;
+cout<<points[i].first<< " , "<<points[i].second<<" <<points2[i].first<< " , "<<points2[i].second<<" : : ";
+delay(1000);
+dda(points[i].first , points[i].second, points2[i].first , points2[i].second, colorr );
+: : "
+cout<<"\n-----------------------------------------------------"<<endl; }
+points2.push_back(make_pair(points2[0].first,points2[0].second));
+for(int i=0;i<points2.size()-1;i++){
+cout<<points2[i].first<< " , "<<points2[i].second<<" : : " <<points2[i+1].first<< " , "<<round(points2[i+1].second)<<" : : \n";
+dda( points2[i].first ,points2[i].second , round( points2[i+1].first ) , round(points2[i+1].second) , colorr);
+delay(1000); }
+}
+inline double clamp(double x, double epsilon = 1e-6) { return (x < epsilon && x > -epsilon) ? 0.0 : x;
+}
+void making_last_column_one(my_matrix *obj,int row){
+for(int i =0; i<row ;i++ ){
+obj->matrix[i][0] = clamp( (obj->matrix[i][0] / obj->matrix[i][3])); obj->matrix[i][1] = clamp( (obj->matrix[i][1] / obj->matrix[i][3]) ); obj->matrix[i][2] = clamp( (obj->matrix[i][2] / obj->matrix[i][3]) ); obj->matrix[i][3] = clamp( (obj->matrix[i][3] / obj->matrix[i][3]) );
+} }
+int main(){
+int r = 8 ; my_matrix *obj;
+https://teams.microsoft.com/v2/
+4/24
+
+5/14/24, 8:41 PM
+if(r>=1){
+cout<<"matrix made"<<endl; obj = new my_matrix(r,1);
+}else{
+cout<<"invalid input"; return 0;
+}
+Teams and Channels | General | Microsoft Teams
+obj->matrix[0][0] = 0; obj->matrix[0][1] = 0; obj->matrix[0][2] = 1;
+obj->matrix[1][0] = 1; obj->matrix[1][1] = 0; obj->matrix[1][2] = 1;
+obj->matrix[2][0] = 1; obj->matrix[2][1] = 1; obj->matrix[2][2] = 1;
+obj->matrix[3][0] = 0; obj->matrix[3][1] = 1; obj->matrix[3][2] = 1;
+obj->matrix[4][0] = 0; obj->matrix[4][1] = 0; obj->matrix[4][2] = 0;
+obj->matrix[5][0] = 1; obj->matrix[5][1] = 0; obj->matrix[5][2] = 0;
+obj->matrix[6][0] = 1; obj->matrix[6][1] = 1; obj->matrix[6][2] = 0;
+obj->matrix[7][0] = 0; obj->matrix[7][1] = 1; obj->matrix[7][2] = 0;
+cout<<"\n object ====================================================== ==========\n";
+obj->print_obj();
+my_matrix *rotation_matrix = new my_matrix(4,0); create_rotation_matrix_x_axis(45.0,rotation_matrix);
+cout<<"\n rotation matrix ====================================================== ==========\n";
+rotation_matrix->print_obj();
+https://teams.microsoft.com/v2/
+5/24
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+// rotating object by multiplying
+my_matrix *result_after_rotation = new my_matrix(r,0); matrix_multiplication(obj, rotation_matrix , result_after_rotation);
+// write code for rotation
+my_matrix *perspective_projection_matrix = new my_matrix(4,0); create_perspective_matrix(60,2.5,perspective_projection_matrix);
+cout<<"\nperspective matrix() :"<<endl; perspective_projection_matrix->print_obj();
+my_matrix *result_after_projection = new my_matrix(r,0);
+matrix_multiplication(result_after_rotation , perspective_projection_matrix , result_after_projection);
+making_last_column_one(result_after_projection,r);
+cout<<"result after projection\n"; result_after_projection->print_obj();
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+// draw_object(result2,GREEN); // delay(2000);
+// scaling object by multiplying
+my_matrix *scaling_mat = new my_matrix(4,0); create_scaling_matrix(100,100,0,scaling_mat);
+my_matrix *scaled_obj = new my_matrix(r,0); matrix_multiplication(result_after_projection , scaling_mat, scaled_obj );
+draw_object(scaled_obj ,BLUE);
+getch(); closegraph();
+return 0; }
+https://teams.microsoft.com/v2/
+6/24
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+//===============. Scaling============================
+// 7) Write a program to apply various 3D transformations on a 3D object and then apply parallel
+// and perspective projection on it.
+// Write a program to apply various 3D transformations on a 3D object and then apply parallel
+// and perspective projection on it.
+// 2 point perspective view
+// rotating 1 point perspective gives --> 2 point perspective
+#include <iostream> #include <conio.h> #include <math.h>
+#include "C:\Users\akash\OneDrive\Desktop\26th_april\dda.cpp"
+#include <vector> #include <utility>
+// #include <graphics.h> using namespace std;
+class my_matrix{ public:
+double** matrix ; int row;
+int col;
+my_matrix(){
+}
+my_matrix(int r,int v){
+row = r;
+col = 4; // for homogeneous
+matrix = new double*[r];
+// Allocate memory for each row for (int i = 0; i < r; ++i) {
+matrix[i] = new double[col]; // Create an array of integers for each row
+}
+// Initialize each element to 1 for (int i = 0; i < r; ++i) {
+for (int j = 0; j < col; ++j) { matrix[i][j] = v;
+} }
+}
+https://teams.microsoft.com/v2/
+7/24
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+void print_obj(){
+cout<<"-------------------------------------OBJECT------------------------- ------------------\n";
+for (int i = 0; i < row; ++i) { for (int j = 0; j < col; ++j) {
+std::cout << matrix[i][j] << " "; }
+std::cout << std::endl; }
+cout<<"----------------------------------------------------------------------- ------------------\n";
+}
+void deallocate_matrix(){
+// Free dynamically allocated memory
+for (int i = 0; i < row; ++i) { delete[] matrix[i];
+}
+delete[] matrix; }
+};
+void create_scaling_matrix(int sx,int sy,int sz, my_matrix *obj){ obj->matrix[0][0] = sx;
+obj->matrix[1][1] = sy;
+obj->matrix[2][2] = sz;
+obj->matrix[3][3] = 1;
+}
+void create_perspective_matrix(double p,double yc,double zc, my_matrix *obj){
+// obj->matrix[0][3] = p;
+// obj->matrix[1][3] = -1*(1/yc); // obj->matrix[2][3] = -1*(1/zc); // obj->matrix[3][3] = 1;
+// obj->matrix[2][2] = 0;
+// obj->matrix[0][0] = 1; // obj->matrix[1][1] = 1;
+obj->matrix[0][0] = 0.5; obj->matrix[1][1] = 1; obj->matrix[2][2] = 0; obj->matrix[3][3] = 1;
+obj->matrix[2][0] = 0.866; obj->matrix[3][1] = 2; obj->matrix[3][0] = 0 ;
+obj->matrix[0][3] = 0.346 ; obj->matrix[2][3] = -0.2 ;
+}
+void matrix_multiplication(my_matrix *obj , my_matrix *scaling , my_matrix *result){
+https://teams.microsoft.com/v2/
+8/24
+
+5/14/24, 8:41 PM
+// Function to perform matrix multiplication
+if (obj->col != scaling->row) {
+std::cerr << "Error: Matrix dimensions mismatch for multiplication." << std::endl;
+exit(1); }
+for (int i = 0; i < obj->row; ++i) {
+for (int j = 0; j < scaling ->col; ++j) {
+result -> matrix[i][j] = 0;
+for (int k = 0; k < obj -> col ; ++k) {
+result -> matrix[i][j] += obj->matrix[i][k] * scaling -> matrix[k]
+Teams and Channels | General | Microsoft Teams
+[j];
+}
+} }
+}
+void draw_object(my_matrix *obj,int colorr){ int x1=0;
+int y1=0;
+int x2=0;
+int y2=0;
+x1 = obj->matrix[0][0]; y1 = obj->matrix[0][1];
+vector< pair< double, double> > points; vector< pair< double, double> > points2;
+// only for 6 faces
+for(int i=0;i< 4;i++){ points.push_back(make_pair(obj->matrix[i][0],obj->matrix[i][1])); if(i==3){
+points.push_back(make_pair(obj->matrix[0][0],obj->matrix[0][1])); }
+}
+for(int i=4;i< 8;i++){
+points2.push_back(make_pair(obj->matrix[i][0],obj->matrix[i][1]));
+// if(i==3){
+// points2.push_back(make_pair(obj->matrix[0][0],obj->matrix[0] [1]));
+// } }
+for(int i=0;i<4;i++){
+//print LINE 1
+cout<<points[i].first<< " , "<<points[i].second<<" <<points[i+1].first<< " , "<<points[i+1].second<<" : : ";
+delay(1000);
+: : "
+dda(points[i].first, points[i].second , points[i+1].first, points[i+1].second , colorr );
+cout<<endl;
+https://teams.microsoft.com/v2/
+9/24
+
+5/14/24, 8:41 PM
+cout<<points[i].first<< " , "<<points[i].second<<" : : " <<points2[i].first<< " , "<<points2[i].second<<" : : ";
+delay(1000);
+dda(points[i].first , points[i].second, points2[i].first , points2[i].second, colorr );
+cout<<"\n-----------------------------------------------------"<<endl; }
+// points2.push_back(make_pair(obj->matrix[0][0],obj->matrix[0][1]));
+for(int i=0;i<points2.size();i++){
+cout<<points2[i].first<< " , "<<points2[i].second<<" : : " <<points2[i+1].first<< " , "<<round(points2[i+1].second)<<" : : \n";
+dda( points2[i].first ,points2[i].second , points2[i+1].first , round(points2[i+1].second) , colorr);
+delay(1000); }
+}
+inline double clamp(double x, double epsilon = 1e-6) { return (x < epsilon && x > -epsilon) ? 0.0 : x;
+}
+void making_last_column_one(my_matrix *obj,int row){
+for(int i =0; i<row ;i++ ){
+obj->matrix[i][0] = clamp( (obj->matrix[i][0] / obj->matrix[i][3])); obj->matrix[i][1] = clamp( (obj->matrix[i][1] / obj->matrix[i][3]) ); obj->matrix[i][2] = clamp( (obj->matrix[i][2] / obj->matrix[i][3]) ); obj->matrix[i][3] = clamp( (obj->matrix[i][3] / obj->matrix[i][3]) );
+} }
+int main(){
+int r = 8 ; my_matrix *obj;
+if(r>=1){
+cout<<"matrix made"<<endl; obj = new my_matrix(r,1); obj->print_obj();
+}else{
+cout<<"invalid input"; return 0;
+}
+Teams and Channels | General | Microsoft Teams
+obj->matrix[0][0] = 0; obj->matrix[0][1] = 0; obj->matrix[0][2] = 1;
+https://teams.microsoft.com/v2/
+10/24
+
+5/14/24, 8:41 PM
+obj->matrix[1][0] = 1; obj->matrix[1][1] = 0; obj->matrix[1][2] = 1;
+obj->matrix[2][0] = 1; obj->matrix[2][1] = 1; obj->matrix[2][2] = 1;
+obj->matrix[3][0] = 0; obj->matrix[3][1] = 1; obj->matrix[3][2] = 1;
+obj->matrix[4][0] = 0; obj->matrix[4][1] = 0; obj->matrix[4][2] = 0;
+obj->matrix[5][0] = 1; obj->matrix[5][1] = 0; obj->matrix[5][2] = 0;
+obj->matrix[6][0] = 1; obj->matrix[6][1] = 1; obj->matrix[6][2] = 0;
+obj->matrix[7][0] = 0; obj->matrix[7][1] = 1; obj->matrix[7][2] = 0;
+int sx = 100 , sx2 = 50; int sy = 100 , sy2 =50; int sz = 0 , sz2 = 0;
+my_matrix *scaling_matrix = new my_matrix(4,0);; create_scaling_matrix(sx,sy,sz,scaling_matrix);
+my_matrix *scaling_matrix2 = new my_matrix(4,0);; create_scaling_matrix(sx2,sy2,sz2,scaling_matrix2);
+my_matrix *perspective_projection_matrix = new my_matrix(4,0);
+create_perspective_matrix(0,1000,1000 ,perspective_projection_matrix);
+cout<<"scaling matrix:"<<endl; scaling_matrix->print_obj();
+cout<<"\nperspective matrix() :"<<endl; perspective_projection_matrix->print_obj();
+my_matrix *result_after_projection = new my_matrix(r,0);
+matrix_multiplication(obj, perspective_projection_matrix , result_after_projection);
+Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+11/24
+
+5/14/24, 8:41 PM
+making_last_column_one(result_after_projection,r);
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+my_matrix *result2 = new my_matrix(r,0); // 8 x 4 matrix_multiplication(result_after_projection ,scaling_matrix2,result2);
+draw_object(result2,GREEN);
+delay(2000);
+// increasing scale
+my_matrix *result = new my_matrix(r,0); // 8 x 4 4 x 4 --> 8 x 4 matrix_multiplication(result_after_projection,scaling_matrix,result);
+draw_object(result,BLUE);
+getch(); closegraph();
+return 0; }
+//=============. Shearing================
+// 7) Write a program to apply various 3D transformations on a 3D object and then apply parallel
+// and perspective projection on it.
+// Write a program to apply various 3D transformations on a 3D object and then apply parallel
+// and perspective projection on it.
+// 2 point perspective view
+// rotating 1 point perspective gives --> 2 point perspective
+#include <iostream> #include <conio.h> #include <math.h>
+#include "C:\Users\akash\OneDrive\Desktop\26th_april\dda.cpp" //#include "C:\Users\akash\OneDrive\Desktop\26th_april\dda.cpp"
+#include <vector> #include <utility>
+#include <graphics.h>
+Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+12/24
+4 x 4 --> 8 x 4
+
+5/14/24, 8:41 PM
+using namespace std;
+double degreesToRadians(double degrees) { return degrees * M_PI / 180.0;
+}
+class my_matrix{ public:
+double** matrix ; int row;
+int col;
+my_matrix(){
+}
+my_matrix(int r,int v){
+row = r;
+col = 4; // for homogeneous
+matrix = new double*[r];
+// Allocate memory for each row for (int i = 0; i < r; ++i) {
+matrix[i] = new double[col]; // Create an array of integers for each row
+}
+// Initialize each element to 1 for (int i = 0; i < r; ++i) {
+for (int j = 0; j < col; ++j) { matrix[i][j] = v;
+} }
+}
+void print_obj(){
+cout<<"-------------------------------------OBJECT------------------------- ------------------\n";
+for (int i = 0; i < row; ++i) { for (int j = 0; j < col; ++j) {
+std::cout << matrix[i][j] << " "; }
+std::cout << std::endl; }
+cout<<"----------------------------------------------------------------------- ------------------\n";
+}
+void deallocate_matrix(){
+// Free dynamically allocated memory
+for (int i = 0; i < row; ++i) { delete[] matrix[i];
+}
+delete[] matrix; }
+};
+Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+13/24
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+void create_shearing_matrix(double b, double c, double d, double f, double g, double i, my_matrix *obj){
+obj->matrix[0][0] = sx; obj->matrix[1][1] = sy; obj->matrix[2][2] = sz; obj->matrix[3][3] = 1;
+}
+void create_scaling_matrix(int sx,int sy,int sz, my_matrix *obj){ obj->matrix[0][0] = sx;
+obj->matrix[1][1] = sy;
+obj->matrix[2][2] = sz;
+obj->matrix[3][3] = 1; }
+void create_perspective_matrix(double angle, double zc , my_matrix *obj){
+double radians = degreesToRadians(angle);
+obj->matrix[0][0] = cos(radians); obj->matrix[0][3] = sin(radians)/zc;
+obj->matrix[1][1] = 1; obj->matrix[2][2] = 0; obj->matrix[3][3] = 1;
+obj->matrix[3][1] = 2;
+obj->matrix[2][0] = sin(radians); obj->matrix[2][3] = (-1*cos(radians))/zc;
+}
+void matrix_multiplication(my_matrix *obj , my_matrix *scaling , my_matrix *result){
+// Function to perform matrix multiplication
+if (obj->col != scaling->row) {
+std::cerr << "Error: Matrix dimensions mismatch for multiplication." << std::endl;
+exit(1); }
+for (int i = 0; i < obj->row; ++i) {
+for (int j = 0; j < scaling ->col; ++j) {
+result -> matrix[i][j] = 0;
+for (int k = 0; k < obj -> col ; ++k) {
+result -> matrix[i][j] += obj->matrix[i][k] * scaling -> matrix[k]
+[j];
+}
+} }
+}
+https://teams.microsoft.com/v2/
+14/24
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+void draw_object(my_matrix *obj,int colorr){ int x1=0;
+int y1=0;
+int x2=0;
+int y2=0;
+x1 = obj->matrix[0][0]; y1 = obj->matrix[0][1];
+vector< pair< double, double> > points; vector< pair< double, double> > points2;
+// only for 6 faces
+for(int i=0;i< 4;i++){ points.push_back(make_pair(obj->matrix[i][0],obj->matrix[i][1])); if(i==3){
+points.push_back(make_pair(obj->matrix[0][0],obj->matrix[0][1])); }
+}
+for(int i=4;i< 8;i++){ points2.push_back(make_pair(obj->matrix[i][0],obj->matrix[i][1]));
+}
+for(int i=0;i<4;i++){
+//print LINE 1
+cout<<points[i].first<< " , "<<points[i].second<<" <<points[i+1].first<< " , "<<points[i+1].second<<" : : ";
+delay(1000);
+: : "
+dda(points[i].first, points[i].second , points[i+1].first, points[i+1].second , colorr );
+cout<<endl;
+cout<<points[i].first<< " , "<<points[i].second<<" <<points2[i].first<< " , "<<points2[i].second<<" : : ";
+delay(1000);
+dda(points[i].first , points[i].second, points2[i].first , points2[i].second, colorr );
+: : "
+cout<<"\n-----------------------------------------------------"<<endl; }
+points2.push_back(make_pair(points2[0].first,points2[0].second));
+for(int i=0;i<points2.size()-1;i++){
+cout<<points2[i].first<< " , "<<points2[i].second<<" : : " <<points2[i+1].first<< " , "<<round(points2[i+1].second)<<" : : \n";
+dda( points2[i].first ,points2[i].second round(points2[i+1].second) , colorr);
+delay(1000); }
+}
+, round( points2[i+1].first ) ,
+https://teams.microsoft.com/v2/
+15/24
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+inline double clamp(double x, double epsilon = 1e-6) { return (x < epsilon && x > -epsilon) ? 0.0 : x;
+}
+void making_last_column_one(my_matrix *obj,int row){
+for(int i =0; i<row ;i++ ){
+obj->matrix[i][0] = clamp( (obj->matrix[i][0] / obj->matrix[i][3])); obj->matrix[i][1] = clamp( (obj->matrix[i][1] / obj->matrix[i][3]) ); obj->matrix[i][2] = clamp( (obj->matrix[i][2] / obj->matrix[i][3]) ); obj->matrix[i][3] = clamp( (obj->matrix[i][3] / obj->matrix[i][3]) );
+} }
+int main(){
+int r = 8 ; my_matrix *obj;
+if(r>=1){
+cout<<"matrix made"<<endl; obj = new my_matrix(r,1);
+}else{
+cout<<"invalid input"; return 0;
+}
+obj->matrix[0][0] = 0; obj->matrix[0][1] = 0; obj->matrix[0][2] = 1;
+obj->matrix[1][0] = 1; obj->matrix[1][1] = 0; obj->matrix[1][2] = 1;
+obj->matrix[2][0] = 1; obj->matrix[2][1] = 1; obj->matrix[2][2] = 1;
+obj->matrix[3][0] = 0; obj->matrix[3][1] = 1; obj->matrix[3][2] = 1;
+obj->matrix[4][0] = 0; obj->matrix[4][1] = 0; obj->matrix[4][2] = 0;
+obj->matrix[5][0] = 1; obj->matrix[5][1] = 0; obj->matrix[5][2] = 0;
+obj->matrix[6][0] = 1;
+https://teams.microsoft.com/v2/
+16/24
+
+5/14/24, 8:41 PM
+obj->matrix[6][1] = 1; obj->matrix[6][2] = 0;
+obj->matrix[7][0] = 0; obj->matrix[7][1] = 1; obj->matrix[7][2] = 0;
+cout<<"\n object ====================================================== ==========\n";
+obj->print_obj();
+// scaling object by multiplying
+my_matrix *scaling_mat = new my_matrix(4,0); create_scaling_matrix(100,100,0,scaling_mat); my_matrix *obj2 = new my_matrix(r,0); matrix_multiplication(obj, scaling_mat , obj2);
+//==================================================== ==shearing==============================
+my_matrix *scaled_obj = new my_matrix(r,0); matrix_multiplication(result_after_projection , scaling_mat, scaled_obj );
+my_matrix *perspective_projection_matrix = new my_matrix(4,0); create_perspective_matrix(60,2.5,perspective_projection_matrix);
+cout<<"\nperspective matrix() :"<<endl; perspective_projection_matrix->print_obj();
+my_matrix *result_after_projection = new my_matrix(r,0);
+matrix_multiplication(result_after_rotation , perspective_projection_matrix , result_after_projection);
+making_last_column_one(result_after_projection,r);
+cout<<"result after projection\n"; result_after_projection->print_obj();
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+// draw_object(result2,GREEN); // delay(2000);
+Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+17/24
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+draw_object(scaled_obj ,BLUE);
+getch(); closegraph();
+return 0; }
+//============== translation===================
+// 7) Write a program to apply various 3D transformations on a 3D object and then apply parallel
+// and perspective projection on it.
+// Write a program to apply various 3D transformations on a 3D object and then apply parallel
+// and perspective projection on it.
+// 2 point perspective view
+// rotating 1 point perspective gives --> 2 point perspective
+#include <iostream> #include <conio.h> #include <math.h>
+#include "C:\Users\akash\OneDrive\Desktop\26th_april\dda.cpp"
+#include <vector> #include <utility>
+// #include <graphics.h> using namespace std;
+class my_matrix{ public:
+double** matrix ; int row;
+int col;
+my_matrix(){
+}
+my_matrix(int r,int v){
+row = r;
+https://teams.microsoft.com/v2/
+18/24
+
+5/14/24, 8:41 PM
+col = 4; // for homogeneous
+matrix = new double*[r];
+// Allocate memory for each row for (int i = 0; i < r; ++i) {
+matrix[i] = new double[col]; // Create an array of integers for each row
+}
+// Initialize each element to 1 for (int i = 0; i < r; ++i) {
+for (int j = 0; j < col; ++j) { matrix[i][j] = v;
+} }
+}
+void print_obj(){
+cout<<"-------------------------------------OBJECT------------------------- ------------------\n";
+for (int i = 0; i < row; ++i) { for (int j = 0; j < col; ++j) {
+std::cout << matrix[i][j] << " "; }
+std::cout << std::endl; }
+cout<<"----------------------------------------------------------------------- ------------------\n";
+}
+void deallocate_matrix(){
+// Free dynamically allocated memory
+for (int i = 0; i < row; ++i) { delete[] matrix[i];
+}
+delete[] matrix; }
+};
+void create_scaling_matrix(int sx,int sy,int sz, my_matrix *obj){ obj->matrix[0][0] = sx;
+obj->matrix[1][1] = sy;
+obj->matrix[2][2] = sz;
+obj->matrix[3][3] = 1;
+}
+void create_translation_matrix(int tx,int ty,int tz, my_matrix *obj){ obj->matrix[0][0] = 1;
+obj->matrix[1][1] = 1;
+obj->matrix[2][2] = 1;
+obj->matrix[3][3] = 1;
+obj->matrix[3][0] = tx; obj->matrix[3][1] = ty;
+}
+Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+19/24
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+void create_perspective_matrix(double p,double yc,double zc, my_matrix *obj){
+// obj->matrix[0][3] = p;
+// obj->matrix[1][3] = -1*(1/yc); // obj->matrix[2][3] = -1*(1/zc); // obj->matrix[3][3] = 1;
+// obj->matrix[2][2] = 0;
+// obj->matrix[0][0] = 1; // obj->matrix[1][1] = 1;
+obj->matrix[0][0] = 0.5; obj->matrix[1][1] = 1; obj->matrix[2][2] = 0; obj->matrix[3][3] = 1;
+obj->matrix[2][0] = 0.866; obj->matrix[3][1] = 2; obj->matrix[3][0] = 0 ;
+obj->matrix[0][3] = 0.346 ; obj->matrix[2][3] = -0.2 ;
+}
+void matrix_multiplication(my_matrix *obj , my_matrix *scaling , my_matrix *result){
+// Function to perform matrix multiplication
+if (obj->col != scaling->row) {
+std::cerr << "Error: Matrix dimensions mismatch for multiplication." << std::endl;
+exit(1); }
+for (int i = 0; i < obj->row; ++i) {
+for (int j = 0; j < scaling ->col; ++j) {
+result -> matrix[i][j] = 0;
+for (int k = 0; k < obj -> col ; ++k) {
+result -> matrix[i][j] += obj->matrix[i][k] * scaling -> matrix[k]
+[j];
+}
+} }
+}
+void draw_object(my_matrix *obj,int colorr){ int x1=0;
+int y1=0;
+// only for 6 faces
+https://teams.microsoft.com/v2/
+20/24
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+int x2=0;
+int y2=0;
+x1 = obj->matrix[0][0]; y1 = obj->matrix[0][1];
+vector< pair< double, double> > points; vector< pair< double, double> > points2;
+for(int i=0;i< 4;i++){ points.push_back(make_pair(obj->matrix[i][0],obj->matrix[i][1])); if(i==3){
+points.push_back(make_pair(obj->matrix[0][0],obj->matrix[0][1])); }
+}
+for(int i=4;i< 8;i++){ points2.push_back(make_pair(obj->matrix[i][0],obj->matrix[i][1]));
+}
+for(int i=0;i<4;i++){
+//print LINE 1
+cout<<points[i].first<< " , "<<points[i].second<<" <<points[i+1].first<< " , "<<points[i+1].second<<" : : ";
+delay(1000);
+: : "
+dda(points[i].first, points[i].second , points[i+1].first, points[i+1].second , colorr );
+cout<<endl;
+cout<<points[i].first<< " , "<<points[i].second<<" : : " <<points2[i].first<< " , "<<points2[i].second<<" : : ";
+delay(1000);
+dda(points[i].first , points[i].second, points2[i].first , points2[i].second, colorr );
+cout<<"\n-----------------------------------------------------"<<endl; }
+points2.push_back(make_pair(points2[0].first,points2[0].second));
+for(int i=0;i<points2.size()-1;i++){
+cout<<points2[i].first<< " , "<<points2[i].second<<" : : " <<points2[i+1].first<< " , "<<round(points2[i+1].second)<<" : : \n";
+dda( points2[i].first ,points2[i].second , round( points2[i+1].first ) , round(points2[i+1].second) , colorr);
+delay(1000); }
+}
+inline double clamp(double x, double epsilon = 1e-6) { return (x < epsilon && x > -epsilon) ? 0.0 : x;
+}
+https://teams.microsoft.com/v2/
+21/24
+
+5/14/24, 8:41 PM
+void making_last_column_one(my_matrix *obj,int row){
+for(int i =0; i<row ;i++ ){
+obj->matrix[i][0] = clamp( (obj->matrix[i][0] / obj->matrix[i][3])); obj->matrix[i][1] = clamp( (obj->matrix[i][1] / obj->matrix[i][3]) ); obj->matrix[i][2] = clamp( (obj->matrix[i][2] / obj->matrix[i][3]) ); obj->matrix[i][3] = clamp( (obj->matrix[i][3] / obj->matrix[i][3]) );
+} }
+int main(){
+int r = 8 ; my_matrix *obj;
+if(r>=1){
+cout<<"matrix made"<<endl; obj = new my_matrix(r,1); obj->print_obj();
+}else{
+cout<<"invalid input"; return 0;
+}
+Teams and Channels | General | Microsoft Teams
+obj->matrix[0][0] = 0; obj->matrix[0][1] = 0; obj->matrix[0][2] = 1;
+obj->matrix[1][0] = 1; obj->matrix[1][1] = 0; obj->matrix[1][2] = 1;
+obj->matrix[2][0] = 1; obj->matrix[2][1] = 1; obj->matrix[2][2] = 1;
+obj->matrix[3][0] = 0; obj->matrix[3][1] = 1; obj->matrix[3][2] = 1;
+obj->matrix[4][0] = 0; obj->matrix[4][1] = 0; obj->matrix[4][2] = 0;
+obj->matrix[5][0] = 1; obj->matrix[5][1] = 0; obj->matrix[5][2] = 0;
+obj->matrix[6][0] = 1; obj->matrix[6][1] = 1; obj->matrix[6][2] = 0;
+obj->matrix[7][0] = 0; obj->matrix[7][1] = 1; obj->matrix[7][2] = 0;
+https://teams.microsoft.com/v2/
+22/24
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+int tx = 200 , sx2 = 50; int ty = 0 , sy2 =50; inttz=0, sz2=0;
+my_matrix *translation_matrix = new my_matrix(4,0); create_translation_matrix(tx,ty,tz,translation_matrix);
+my_matrix *scaling_matrix2 = new my_matrix(4,0);; create_scaling_matrix(sx2,sy2,sz2,scaling_matrix2);
+my_matrix *perspective_projection_matrix = new my_matrix(4,0);
+create_perspective_matrix(0,1000,1000 ,perspective_projection_matrix);
+cout<<"\nperspective matrix() :"<<endl; perspective_projection_matrix->print_obj();
+my_matrix *result_after_projection = new my_matrix(r,0);
+matrix_multiplication(obj, perspective_projection_matrix , result_after_projection);
+making_last_column_one(result_after_projection,r);
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+my_matrix *result2 = new my_matrix(r,0); // 8 x 4 matrix_multiplication(result_after_projection ,scaling_matrix2,result2);
+draw_object(result2,GREEN);
+delay(2000);
+// TRANSLATION
+my_matrix *result = new my_matrix(r,0); // 8 x 4 4 x 4 --> 8 x 4 matrix_multiplication(result2,translation_matrix ,result);
+draw_object(result,BLUE);
+getch(); closegraph();
+return 0; }
+https://teams.microsoft.com/v2/
+23/24
+4 x 4 --> 8 x 4
+
+5/14/24, 8:41 PM Teams and Channels | General | Microsoft Teams
+https://teams.microsoft.com/v2/
+24/24
+
+
+
+//================
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+q8
+Thursday, May 02, 2024 9:09 PM
+8) Write a program to draw Hermite/Bezier curve.
+// curve
+// write a program to draw Hermite/Bezier curve.
+#include <iostream> #include <cmath> #include <vector> #include <utility> #include <math.h>
+#include <graphics.h>
+#define M_PI 3.14159265358979323846
+using namespace std;
+double find_x(double u, vector<pair<double, double>> control_points) {
+return (control_points[0].first * pow((1 - u), 3)) + (control_points[1].first * 3 * u * pow(1 - u, 2)) +
+(control_points[2].first * 3 * pow(u, 2) * (1 - u)) + (control_points[3].first * 1 * pow(u, 3));
+}
+double find_y(double u, vector<pair<double, double>> control_points) {
+return (control_points[0].second * pow((1 - u), 3)) + (control_points[1].second * 3 * u * pow(1 - u, 2)) + (control_points[2].second * 3 * pow(u, 2) * (1 - u)) + (control_points[3].second * 1 * pow(u, 3));
+}
+int main() {
+vector<pair<double, double>> control_points; control_points.push_back(make_pair(100, 100)); control_points.push_back(make_pair(200, 30)); control_points.push_back(make_pair(150, 90)); control_points.push_back(make_pair(400, 300));
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+double t = 0.0; while (t <= 1.0) {
+putpixel(find_x(t, control_points), find_y(t, control_points), RED);
+t += 0.001; }
+getch();
+closegraph(); }
+//=================
+ https://teams.microsoft.com/v2/
+1/3
+
+5/14/24, 8:41 PM
+Teams and Channels | General | Microsoft Teams
+// write a program to draw Hermite/Bezier curve. #include <iostream>
+#include <cmath>
+#include <vector>
+#include <utility>
+#include "C:\Users\krishna\Desktop\cpp\dda.cpp"
+#include <graphics.h>
+#define M_PI 3.14159265358979323846
+using namespace std;
+//p1 , p4, R1, R4
+double find_x(double t, vector<pair<double, double > > control_points){ double t3 = pow(t,3);
+double t2 = pow(t,2);
+return control_points[0].first*( 2*t3 - 3*t2 + 1) + control_points[1].first * (-2*t3 + 3*t2) +
+control_points[2].first*( t3 -2*t2 + t ) + control_points[3].first*( t3 - t2) ;
+}
+double find_y(double t, vector<pair<double, double > > control_points){ double t3 = pow(t,3);
+double t2 = pow(t,2);
+return control_points[0].second*( 2*t3 - 3*t2 + 1) + control_points[1].second *(-2*t3 + 3*t2) +
+control_points[2].second*( t3 -2*t2 + t ) + control_points[3].second *( t3 - t2) ;
+}
+int main(){
+vector<pair<double, double > > control_points; // P1 , P4 R2
+control_points.push_back(make_pair(0,0)); control_points.push_back(make_pair(400,400)); control_points.push_back(make_pair(90,400)); control_points.push_back(make_pair(0,400));
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+double t =0.0; while(t <=1.0){
+,, R1 ,
+// cout<<find_x(t,control_points)<<" , "<<find_y(t,control_points) <<endl;
+if(t<=0.5){
+putpixel(find_x(t,control_points), find_y(t,control_points), RED);
+}else{
+putpixel(find_x(t,control_points), find_y(t,control_points), BLUE);
+}
+t += 0.00001; }
+getch(); closegraph();
+https://teams.microsoft.com/v2/
+2/3
+
+5/14/24, 8:41 PM Teams and Channels | General | Microsoft Teams
+}
+https://teams.microsoft.com/v2/
+3/3
+
+
+
+//==================
+
+
+
+
+5/14/24, 8:42 PM
+Teams and Channels | General | Microsoft Teams
+dda
+Thursday, May 02, 2024
+#include <iostream> #include <conio.h> #include <math.h>
+#include <graphics.h>
+using namespace std;
+void swap(int *&p1 , int *&p2){ int *temp = p2;
+p2 = p1;
+p1 = temp;
+}
+double slope(int *p1, int *p2,int &flag){
+ if(p2[1] - p1[1] ==0){ flag =0;
+return 0; }
+if(p2[0] - p1[0]==0){ flag =1;
+return 0; }
+// 0 means
+9:34 PM
+double m = double(double(p2[1] - p1[1] ) / double(p2[0] - p1[0])); return m;
+}
+void draw_h(int *p1, int *p2,int colorr){
+if (p2[0]<p1[0]) { swap(p1,p2);
+}
+int x1 = p1[0]; int x2 = p2[0];
+int y= p1[1];
+while(x1 < x2){
+putpixel(x1,getmaxy()-y,colorr);
+https://teams.microsoft.com/v2/
+1/5
+
+5/14/24, 8:42 PM
+Teams and Channels | General | Microsoft Teams
+x1 +=1; }
+}
+void draw_v(int *p1, int *p2,int colorr){
+if (p1[1]>p2[1]) { swap(p1,p2);
+}
+int y1 = p1[1]; int y2 = p2[1];
+int x= p1[0];
+while(y1 < y2){
+putpixel(x,getmaxy()-y1,colorr);
+y1 +=1; }
+}
+void dda(int *p1, int *p2,int colorr){
+int flag =-1;
+double m = slope(p1,p2,flag);
+if(flag==0){ //horizontal
+draw_h(p1,p2,colorr); return ;
+}
+if(flag==1){ //vertical
+draw_v(p1,p2,colorr);
+return ; }
+if( abs(m) > 1){ // y is larger than x
+if (p2[1]<p1[1]) { swap(p1,p2); }
+int y2 = p2[1];
+int y = p1[1]; double x = p1[0];
+for(;y<=y2; y++){
+https://teams.microsoft.com/v2/
+2/5
+
+5/14/24, 8:42 PM
+Teams and Channels | General | Microsoft Teams
+x = x + double(1.0/m); putpixel(round(x),getmaxy()-y,colorr);
+}
+}else{ // x is larger than y if (p1[0]>p2[0])
+{swap(p1,p2); }
+int x2 = p2[0];
+int x = p1[0]; double y = p1[1];
+for(;x<=x2; x++){
+y = y + double(m); putpixel(round(x),getmaxy()-y,colorr);
+}
+} //
+}
+void dda(int x1 , int y1, int x2 , int y2,int colorr ){
+int *p1 = new int(2); p1[0] = x1;
+p1[1] = y1;
+int *p2 = new int(2); p2[0] = x2;
+p2[1] = y2;
+int flag =-1;
+double m = slope(p1,p2,flag);
+if(flag==0){ //horizontal
+draw_h(p1,p2,colorr); return ;
+}
+if(flag==1){ //vertical
+draw_v(p1,p2,colorr);
+return ; }
+if( abs(m) > 1){ // y is larger than x
+if (p2[1]<p1[1]) { swap(p1,p2);
+https://teams.microsoft.com/v2/
+3/5
+
+5/14/24, 8:42 PM
+Teams and Channels | General | Microsoft Teams
+}
+int y2 = p2[1];
+int y = p1[1]; double x = p1[0];
+for(;y<=y2; y++){
+x = x + double(1.0/m); putpixel(round(x),getmaxy()-y,colorr);
+}
+}else{ // x is larger than y if (p1[0]>p2[0])
+{swap(p1,p2); }
+int x2 = p2[0];
+int x = p1[0]; double y = p1[1];
+for(;x<=x2; x++){
+y = y + double(m); putpixel(round(x),getmaxy()-y,colorr);
+} }
+}
+void print_point(int *p){
+cout<<" x : "<<p[0]<<" y : "<<p[1]<<endl;
+}
+// -lbgi -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32
+int main() {
+int a,b;
+int *p1 = new int(2); int *p2 = new int(2);
+// INPUT 2 POINT p1[0] = 1;
+p1[1] =2;
+p2[0] = 100; p2[1] = 30;
+https://teams.microsoft.com/v2/
+4/5
+
+5/14/24, 8:42 PM
+Teams and Channels | General | Microsoft Teams
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver);
+print_point(p1); print_point(p2);
+dda(p1,p2,RED);
+getch(); closegraph();
+}
+https://teams.microsoft.com/v2/
+5/5
+
+
+
+//================
+
+5/14/24, 8:42 PM
+Teams and Channels | General | Microsoft Teams
+ellipse
+Thursday, May 02, 2024
+#include<iostream> #include<graphics.h> #include<conio.h> #include<math.h> using namespace std;
+void plotpoints(int x, int y,int *p){ putpixel(x+p[0],getmaxy()-(y+p[1]),255); putpixel(x+p[0],getmaxy()-(-y+p[1]),255); putpixel(-x+p[0],getmaxy()-(-y+p[1]),255); putpixel(-x+p[0],getmaxy()-(y+p[1]),255);
+}
+void Ellipse(int a,int b, int *p){ int x=0,y=b;
+int sa=a*a;
+int sb=b*b;
+double d1=sb-sa*b+0.25*sa; plotpoints(x,y,p);
+while( sa*(y-0.5) > sb*(x+1)){ // Region 1
+if(d1<0) { //choose E E= b^2 (2x + 3) d1+=sb*((2*x)+3);
+}
+else{ //choose SE SE= b^2 (2x + 3) + a^2 (-2y + 2)
+d1+=sb*((2*x)+3) + sa*(-(2*y)+2);
+y--; }
+x++;
+plotpoints(x,y,p); }
+double d2 = sb*(x+0.5)*(x+0.5) + sa*(y-1)*(y-1) -sa*sb; while (y>0){ // Region 2
+if(d2<0){ // choose SE SE= b^2 (2x + 2) + a^2 (-2y + 3) d2+= sb*((2*x)+2) + sa*(-(2*y)+3);
+x++;
+}
+else{//chooseS S=a^2(-2y+3)
+d2+= sa*(-(2*y)+3); }
+y--;
+plotpoints(x,y,p); }
+}
+int main(){
+int gd = DETECT, gm;
+char pathtodriver[] = ""; initgraph(&gd, &gm, pathtodriver); int *p=new int(2);
+int a =50; int b =60;
+p[0]=200; p[1]=300;
+Ellipse(a,b,p); getch(); closegraph(); return 0;
+ https://teams.microsoft.com/v2/
+1/2
+9:34 PM
+
+5/14/24, 8:42 PM Teams and Channels | General | Microsoft Teams
+}
+https://teams.microsoft.com/v2/
+2/2
+
+
+//=============
+
+
+
+
+
+
+
+
+
+
